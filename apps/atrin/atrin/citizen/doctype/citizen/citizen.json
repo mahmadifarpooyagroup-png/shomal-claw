@@ -1,0 +1,72 @@
+{
+  "actions": [],
+  "autoname": "field:citizen_code",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "citizen_code",
+    "full_name",
+    "mobile",
+    "national_identifier",
+    "active"
+  ],
+  "fields": [
+    {
+      "fieldname": "citizen_code",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Citizen Code",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "full_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Full Name",
+      "reqd": 1
+    },
+    {
+      "fieldname": "mobile",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Mobile"
+    },
+    {
+      "fieldname": "national_identifier",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "National Identifier"
+    },
+    {
+      "default": "1",
+      "fieldname": "active",
+      "fieldtype": "Check",
+      "in_list_view": 1,
+      "label": "Active"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "module": "Citizen",
+  "name": "Citizen",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": [],
+  "track_changes": 1
+}
