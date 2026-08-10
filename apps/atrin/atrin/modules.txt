@@ -1,0 +1,13 @@
+Identity
+Organization
+Citizen
+Service Registry
+Case Management
+Queue
+Counter
+Appointment
+Document
+Asset
+Finance
+Integration
+Reporting
