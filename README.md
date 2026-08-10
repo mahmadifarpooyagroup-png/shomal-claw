@@ -2,19 +2,28 @@
 
 **Atrin Smart Service Platform (ASSP)**
 
-Shomal is the new development repository for Atrin's smart service platform.
+Shomal is the development repository for Atrin's smart service platform.
 
 ## Architecture
 
-Shomal uses **Frappe Framework** as its platform and builds Atrin as a modular application on top of it.
+Shomal is a modular monolith built on **Frappe Framework**. ERPNext and Frappe Helpdesk are installed as internal applications and are reused/extended inside the same Shomal deployment where they provide suitable capabilities.
 
-### Direction
+### Mandatory development direction
 
-- Frappe Framework → platform
-- Atrin → domain application
-- ERPNext → selective reusable capabilities/reference
-- Frappe Helpdesk → Case/Ticket/SLA reference and selective reuse
-- BC Government Queue Management → Queue/Counter/Check-in reference
+**Frappe → ERPNext → Helpdesk → Reuse/Extend → only if unavailable, custom Atrin code.**
+
+This is a mandatory gate for every functional change. A PR must document the upstream search and justify any custom implementation.
+
+### Domain ownership
+
+- Frappe → platform, ORM, permissions, workflow, API, jobs, realtime and migrations
+- ERPNext → Appointment and SLA capabilities that fit the requirements
+- Helpdesk → Ticket/Case lifecycle, activity, assignment and related helpdesk capabilities
+- Atrin → Citizen, Service Registry and Pishkhan-specific Queue, Counter, Call Next and routing where upstream capabilities are insufficient
+
+### Runtime model
+
+Frappe, ERPNext, Helpdesk and Atrin run together inside the same Shomal installation. The core Pishkhan workflow is designed to operate over the local network without Internet access. External government APIs, SMS and cloud services can remain connectivity-dependent.
 
 ### Core domains
 
@@ -24,4 +33,6 @@ See [`ARCHITECTURE.md`](ARCHITECTURE.md) and [`docs/architecture/domain-map.md`]
 
 ## Current status
 
-Architecture baseline established. Implementation will proceed from the Frappe-based Atrin application foundation, then Service Registry, Citizen, Case, Queue, Counter, Appointment and Government Integration.
+Architecture baseline aligned with the mandatory reuse gate. Next implementation work is the safe migration from parallel Atrin Appointment/Service Case implementations to ERPNext Appointment and Helpdesk HD Ticket, followed by integration with Atrin Queue and Counter.
+
+Future ideas that are not currently selected for implementation are kept under `docs/future/`.
