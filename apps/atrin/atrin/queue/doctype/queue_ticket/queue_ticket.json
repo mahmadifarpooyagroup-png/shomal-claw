@@ -1,0 +1,23 @@
+{
+  "actions": [],
+  "autoname": "naming_series:",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": ["naming_series","citizen","service","office","appointment","priority","status","ticket_number","called_at","completed_at"],
+  "fields": [
+    {"fieldname":"naming_series","fieldtype":"Select","label":"Series","options":"QUE-.YYYY.-","default":"QUE-.YYYY.-","reqd":1},
+    {"fieldname":"citizen","fieldtype":"Link","label":"Citizen","options":"Citizen","reqd":1,"in_list_view":1},
+    {"fieldname":"service","fieldtype":"Link","label":"Service","options":"Service","reqd":1,"in_list_view":1},
+    {"fieldname":"office","fieldtype":"Link","label":"Office","options":"Office","reqd":1},
+    {"fieldname":"appointment","fieldtype":"Link","label":"Appointment","options":"Appointment"},
+    {"fieldname":"priority","fieldtype":"Int","label":"Priority","default":"0","in_list_view":1},
+    {"fieldname":"status","fieldtype":"Select","label":"Status","options":"Waiting\nCalled\nServing\nHold\nCompleted\nCancelled","default":"Waiting","in_list_view":1},
+    {"fieldname":"ticket_number","fieldtype":"Data","label":"Ticket Number","read_only":1,"in_list_view":1},
+    {"fieldname":"called_at","fieldtype":"Datetime","label":"Called At","read_only":1},
+    {"fieldname":"completed_at","fieldtype":"Datetime","label":"Completed At","read_only":1}
+  ],
+  "module":"Queue",
+  "name":"Queue Ticket",
+  "permissions":[{"role":"System Manager","read":1,"write":1,"create":1,"delete":1,"print":1,"email":1,"export":1,"report":1,"share":1}],
+  "track_changes":1
+}
