@@ -2,15 +2,22 @@
 
 ## Decision
 
-Use the supported Frappe/ERPNext Version 16 line for the initial Shomal prototype.
+Use the supported **Frappe/ERPNext Version 15** line for the Shomal prototype.
 
-- Frappe: `version-16-hotfix`
-- ERPNext: `version-16-hotfix`
-- Python: 3.14+
-- Node.js: 24
+- Frappe: `version-15-hotfix`
+- ERPNext: `version-15-hotfix`
+- Frappe Helpdesk: latest compatible with Frappe 15
+- Python: 3.12
+- Node.js: 18
+- MariaDB: 10.6
+- Redis: 7
 
-These pins follow the current Frappe installation requirements and supported-version guidance. They must be kept aligned; do not install ERPNext from a different major version than Frappe.
+These pins follow the **currently available** Frappe installation requirements. Do NOT install ERPNext from a different major version than Frappe.
 
-## Why Version 16
+## Why Version 15
 
-Version 16 is a supported line with a long planned support window and is the current stable direction for new Frappe/ERPNext installations. Version 17/develop remains bleeding-edge and is not the initial target for Shomal.
+Version 15 is the current stable and supported line. Version 16 is not yet available as a stable release and must NOT be used as the target. These pins will be updated when Frappe 16 reaches stable release.
+
+## Compatibility note
+
+The previous VERSION-PINS specified Frappe v16 with Python 3.14+ and Node 24 — these versions do not exist. This file corrects that error.

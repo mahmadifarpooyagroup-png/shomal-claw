@@ -1,0 +1,44 @@
+[
+  {
+    "role": "Counter Agent",
+    "desk_access": 1,
+    "two_factor_auth": 0,
+    "restrict_to_domain": "Counter"
+  },
+  {
+    "role": "Queue Operator",
+    "desk_access": 1,
+    "two_factor_auth": 0,
+    "restrict_to_domain": "Queue"
+  },
+  {
+    "role": "Citizen Viewer",
+    "desk_access": 0,
+    "two_factor_auth": 0,
+    "restrict_to_domain": null
+  },
+  {
+    "role": "Service Manager",
+    "desk_access": 1,
+    "two_factor_auth": 0,
+    "restrict_to_domain": "Service Registry"
+  },
+  {
+    "role": "Organization Admin",
+    "desk_access": 1,
+    "two_factor_auth": 0,
+    "restrict_to_domain": "Organization"
+  },
+  {
+    "role": "Integration Agent",
+    "desk_access": 0,
+    "two_factor_auth": 0,
+    "restrict_to_domain": "Integration"
+  },
+  {
+    "role": "Audit Viewer",
+    "desk_access": 1,
+    "two_factor_auth": 0,
+    "restrict_to_domain": null
+  }
+]

@@ -1,0 +1,76 @@
+name: Atrin CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check for duplicate app directories
+        run: |
+          if [ -f "atrin/hooks.py" ] && [ -f "apps/atrin/atrin/hooks.py" ]; then
+            echo "ERROR: Duplicate atrin/ app directories detected!"
+            echo "Remove atrin/ from the repository root — only apps/atrin/ should remain."
+            exit 1
+          fi
+      - name: Validate DocType JSON schemas
+        run: |
+          echo "Validating DocType JSON files..."
+          find apps/atrin -name "*.json" -path "*/doctype/*" | while read f; do
+            python3 -m json.tool "$f" > /dev/null || {
+              echo "ERROR: Invalid JSON in $f"
+              exit 1
+            }
+          done
+          echo "All DocType JSON files are valid."
+      - name: Check version consistency
+        run: |
+          echo "Checking version pins..."
+          if grep -q "version-16" docs/development/VERSION-PINS.md 2>/dev/null; then
+            echo "WARNING: VERSION-PINS.md references version-16 which does not exist."
+            echo "Frappe 16 is not available. Use version-15."
+          fi
+          if grep -q "3\\.14" docs/development/VERSION-PINS.md 2>/dev/null; then
+            echo "ERROR: Python 3.14 does not exist yet. Use 3.12."
+            exit 1
+          fi
+          if grep -q "Node\\.js: 24" docs/development/VERSION-PINS.md 2>/dev/null; then
+            echo "ERROR: Node.js 24 does not exist yet. Use 18."
+            exit 1
+          fi
+          echo "Version pins look consistent."
+      - name: Verify module list consistency
+        run: |
+          echo "Checking modules.txt consistency..."
+          ROOT_MODULES=$(cat modules.txt | sort)
+          APP_MODULES=$(cat apps/atrin/atrin/modules.txt | sort)
+          if [ "$ROOT_MODULES" != "$APP_MODULES" ]; then
+            echo "WARNING: modules.txt differs between root and apps/atrin/atrin/"
+            diff <(echo "$ROOT_MODULES") <(echo "$APP_MODULES") || true
+          else
+            echo "Module lists are consistent."
+          fi
+      - name: Check for deprecated DocTypes
+        run: |
+          echo "Checking for deprecated custom DocTypes..."
+          DEPRECATED=""
+          if [ -f "apps/atrin/atrin/appointment/doctype/appointment/appointment.json" ]; then
+            DEPRECATED="$DEPRECATED appointment"
+          fi
+          if [ -f "apps/atrin/atrin/case_management/doctype/service_case/service_case.json" ]; then
+            DEPRECATED="$DEPRECATED service_case"
+          fi
+          if [ -n "$DEPRECATED" ]; then
+            echo "WARNING: Custom Atrin DocTypes exist that should migrate to upstream: $DEPRECATED"
+            echo "  - Appointment → ERPNext Appointment"
+            echo "  - Service Case → Helpdesk HD Ticket"
+            echo "Migration is tracked in docs/development/SERVICE-CASE-MIGRATION-PLAN.md"
+          fi
