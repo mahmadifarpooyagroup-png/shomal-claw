@@ -1,13 +1,21 @@
 {
   "actions": [],
   "autoname": "field:organization_code",
+  "creation": "2026-08-12 10:00:00.000000",
   "doctype": "DocType",
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
     "organization_code",
     "organization_name",
-    "active"
+    "phone",
+    "address",
+    "column_break_basic",
+    "active",
+    "section_break_meta",
+    "lft",
+    "rgt",
+    "is_group"
   ],
   "fields": [
     {
@@ -26,18 +34,60 @@
       "reqd": 1
     },
     {
+      "fieldname": "phone",
+      "fieldtype": "Data",
+      "label": "Phone"
+    },
+    {
+      "fieldname": "address",
+      "fieldtype": "Small Text",
+      "label": "Address"
+    },
+    {
+      "fieldname": "column_break_basic",
+      "fieldtype": "Column Break"
+    },
+    {
       "default": "1",
       "fieldname": "active",
       "fieldtype": "Check",
       "in_list_view": 1,
       "label": "Active"
+    },
+    {
+      "fieldname": "section_break_meta",
+      "fieldtype": "Section Break",
+      "label": "Hierarchy"
+    },
+    {
+      "fieldname": "lft",
+      "fieldtype": "Int",
+      "hidden": 1,
+      "label": "Left",
+      "no_copy": 1
+    },
+    {
+      "fieldname": "rgt",
+      "fieldtype": "Int",
+      "hidden": 1,
+      "label": "Right",
+      "no_copy": 1
+    },
+    {
+      "default": "0",
+      "fieldname": "is_group",
+      "fieldtype": "Check",
+      "label": "Is Group"
     }
   ],
+  "has_web_view": 1,
   "index_web_pages_for_search": 1,
+  "is_tree": 1,
   "links": [],
-  "modified": "2026-08-10 00:00:00.000000",
+  "modified": "2026-08-12 10:00:00.000000",
   "module": "Organization",
   "name": "Organization",
+  "naming_rule": "By fieldname",
   "permissions": [
     {
       "create": 1,
@@ -47,13 +97,32 @@
       "print": 1,
       "read": 1,
       "report": 1,
-      "role": "System Manager",
+      "role": "Organization Admin",
       "share": 1,
       "write": 1
+    },
+    {
+      "read": 1,
+      "role": "Service Manager",
+      "export": 1,
+      "report": 1,
+      "print": 1
+    },
+    {
+      "read": 1,
+      "role": "Counter Agent",
+      "print": 1
+    },
+    {
+      "read": 1,
+      "role": "Citizen Viewer",
+      "print": 1
     }
   ],
+  "show_name_in_global_search": 1,
   "sort_field": "modified",
   "sort_order": "DESC",
   "states": [],
+  "title_field": "organization_name",
   "track_changes": 1
 }
