@@ -1,0 +1,77 @@
+{
+  "actions": [],
+  "creation": "2026-08-12 10:00:00.000000",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "sla_name",
+    "description",
+    "column_break_basic",
+    "response_minutes",
+    "resolution_minutes",
+    "active"
+  ],
+  "fields": [
+    {
+      "fieldname": "sla_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "SLA Name",
+      "reqd": 1
+    },
+    {
+      "fieldname": "description",
+      "fieldtype": "Small Text",
+      "label": "Description"
+    },
+    {
+      "fieldname": "column_break_basic",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "response_minutes",
+      "fieldtype": "Int",
+      "label": "Response SLA (minutes)",
+      "default": "0",
+      "reqd": 1
+    },
+    {
+      "fieldname": "resolution_minutes",
+      "fieldtype": "Int",
+      "label": "Resolution SLA (minutes)",
+      "default": "0",
+      "reqd": 1
+    },
+    {
+      "default": "1",
+      "fieldname": "active",
+      "fieldtype": "Check",
+      "in_list_view": 1,
+      "label": "Active"
+    }
+  ],
+  "modified": "2026-08-12 10:00:00.000000",
+  "module": "Service Registry",
+  "name": "Service SLA",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "read": 1,
+      "role": "Service Manager",
+      "write": 1,
+      "export": 1,
+      "report": 1,
+      "print": 1,
+      "share": 1,
+      "email": 1
+    },
+    {
+      "read": 1,
+      "role": "Counter Agent",
+      "print": 1
+    }
+  ],
+  "title_field": "sla_name",
+  "track_changes": 1
+}
