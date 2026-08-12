@@ -1,18 +1,1 @@
-{
-  "actions": [],
-  "autoname": "field:counter_code",
-  "doctype": "DocType",
-  "engine": "InnoDB",
-  "field_order": ["counter_code","counter_name","office","active","current_ticket"],
-  "fields": [
-    {"fieldname":"counter_code","fieldtype":"Data","label":"Counter Code","reqd":1,"unique":1,"in_list_view":1},
-    {"fieldname":"counter_name","fieldtype":"Data","label":"Counter Name","reqd":1,"in_list_view":1},
-    {"fieldname":"office","fieldtype":"Link","label":"Office","options":"Office","reqd":1,"in_list_view":1},
-    {"default":"1","fieldname":"active","fieldtype":"Check","label":"Active","in_list_view":1},
-    {"fieldname":"current_ticket","fieldtype":"Link","label":"Current Ticket","options":"Queue Ticket","read_only":1}
-  ],
-  "module":"Counter",
-  "name":"Counter",
-  "permissions":[{"role":"System Manager","read":1,"write":1,"create":1,"delete":1,"print":1,"email":1,"export":1,"report":1,"share":1}],
-  "track_changes":1
-}
+{"actions":[],"autoname":"field:counter_code","creation":"2026-08-12 10:00:00.000000","doctype":"DocType","engine":"InnoDB","field_order":["counter_code","counter_name","office","column_break_basic","status","active","section_break_current","current_ticket","current_citizen","called_at"],"fields":[{"fieldname":"counter_code","fieldtype":"Data","label":"Counter Code","reqd":1,"unique":1,"in_list_view":1},{"fieldname":"counter_name","fieldtype":"Data","label":"Counter Name","reqd":1,"in_list_view":1},{"fieldname":"office","fieldtype":"Link","label":"Office","options":"Office","reqd":1,"in_list_view":1},{"fieldname":"column_break_basic","fieldtype":"Column Break"},{"fieldname":"status","fieldtype":"Select","label":"Status","options":"Online\nOffline\nBreak","default":"Offline","in_list_view":1},{"default":"1","fieldname":"active","fieldtype":"Check","label":"Active","in_list_view":1},{"fieldname":"section_break_current","fieldtype":"Section Break","label":"Current Service"},{"fieldname":"current_ticket","fieldtype":"Link","label":"Current Ticket","options":"Queue Ticket","read_only":1},{"fieldname":"current_citizen","fieldtype":"Data","label":"Current Citizen","read_only":1},{"fieldname":"called_at","fieldtype":"Datetime","label":"Called At","read_only":1}],"modified":"2026-08-12 10:00:00.000000","module":"Counter","name":"Counter","naming_rule":"By fieldname","permissions":[{"create":1,"delete":1,"read":1,"role":"Organization Admin","write":1,"export":1,"report":1,"print":1,"share":1,"email":1},{"read":1,"role":"Service Manager","export":1,"report":1,"print":1},{"read":1,"role":"Counter Agent","write":1,"print":1},{"read":1,"role":"Queue Operator","export":1,"report":1,"print":1},{"read":1,"role":"Citizen Viewer","print":1}],"title_field":"counter_name","track_changes":1}
