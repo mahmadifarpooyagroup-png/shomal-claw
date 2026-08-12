@@ -1,14 +1,23 @@
 {
   "actions": [],
   "autoname": "field:citizen_code",
+  "creation": "2026-08-12 10:00:00.000000",
   "doctype": "DocType",
   "editable_grid": 1,
   "engine": "InnoDB",
   "field_order": [
     "citizen_code",
     "full_name",
-    "mobile",
+    "column_break_name",
     "national_identifier",
+    "section_break_contact",
+    "mobile",
+    "phone",
+    "email",
+    "section_break_personal",
+    "date_of_birth",
+    "gender",
+    "column_break_status",
     "active"
   ],
   "fields": [
@@ -28,16 +37,58 @@
       "reqd": 1
     },
     {
-      "fieldname": "mobile",
-      "fieldtype": "Data",
-      "in_list_view": 1,
-      "label": "Mobile"
+      "fieldname": "column_break_name",
+      "fieldtype": "Column Break"
     },
     {
       "fieldname": "national_identifier",
       "fieldtype": "Data",
+      "label": "National Identifier",
+      "unique": 1
+    },
+    {
+      "fieldname": "section_break_contact",
+      "fieldtype": "Section Break",
+      "label": "Contact Information"
+    },
+    {
+      "fieldname": "mobile",
+      "fieldtype": "Data",
       "in_list_view": 1,
-      "label": "National Identifier"
+      "label": "Mobile",
+      "options": "Phone"
+    },
+    {
+      "fieldname": "phone",
+      "fieldtype": "Data",
+      "label": "Phone",
+      "options": "Phone"
+    },
+    {
+      "fieldname": "email",
+      "fieldtype": "Data",
+      "label": "Email",
+      "options": "Email"
+    },
+    {
+      "fieldname": "section_break_personal",
+      "fieldtype": "Section Break",
+      "label": "Personal Details"
+    },
+    {
+      "fieldname": "date_of_birth",
+      "fieldtype": "Date",
+      "label": "Date of Birth"
+    },
+    {
+      "fieldname": "gender",
+      "fieldtype": "Link",
+      "label": "Gender",
+      "options": "Gender"
+    },
+    {
+      "fieldname": "column_break_status",
+      "fieldtype": "Column Break"
     },
     {
       "default": "1",
@@ -47,10 +98,18 @@
       "label": "Active"
     }
   ],
+  "has_web_view": 1,
   "index_web_pages_for_search": 1,
-  "links": [],
+  "links": [
+    {
+      "link_doctype": "Queue Ticket",
+      "link_fieldname": "citizen"
+    }
+  ],
+  "modified": "2026-08-12 10:00:00.000000",
   "module": "Citizen",
   "name": "Citizen",
+  "naming_rule": "By fieldname",
   "permissions": [
     {
       "create": 1,
@@ -60,13 +119,36 @@
       "print": 1,
       "read": 1,
       "report": 1,
-      "role": "System Manager",
+      "role": "Service Manager",
       "share": 1,
       "write": 1
+    },
+    {
+      "create": 1,
+      "email": 1,
+      "read": 1,
+      "role": "Counter Agent",
+      "write": 1,
+      "print": 1
+    },
+    {
+      "create": 1,
+      "read": 1,
+      "role": "Citizen Viewer",
+      "write": 0
+    },
+    {
+      "read": 1,
+      "role": "Queue Operator",
+      "export": 1,
+      "report": 1,
+      "print": 1
     }
   ],
+  "show_name_in_global_search": 1,
   "sort_field": "modified",
   "sort_order": "DESC",
   "states": [],
+  "title_field": "full_name",
   "track_changes": 1
 }
